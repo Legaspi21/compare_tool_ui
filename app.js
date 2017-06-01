@@ -1,23 +1,29 @@
 $(document).ready(function(){
-	function tooltipTriggerMouseIn() {
-		var info = $('.fa-info');
-		var infoCircle = $('.fa-info-circle');
-		var toolTip = $('.product-tooltip');
-		
-		info.hide();
-		infoCircle.show();
-		toolTip.show();
-	}
-	function tooltipTriggerMouseOut() {
-		var info = $('.fa-info');
-		var infoCircle = $('.fa-info-circle');
-		var toolTip = $('.product-tooltip');
-		
-		info.show();
-		infoCircle.hide();
-		toolTip.hide();
-	}
+	// Hide circle icon and tooltip
 	$('.fa-info-circle').hide();
 	$('.product-tooltip').hide();
-	$('.product-description').hover(tooltipTriggerMouseIn, tooltipTriggerMouseOut);
+	
+	// Show tooltip, Hide plain info icon, Show circle icon
+	$('.product-description').on('mouseenter', function() {
+		var description = $(this);
+		var info = description.find('.fa-info');
+		var infoCircle = description.find('.fa-info-circle');
+		var toolTip = description.next();
+		
+		infoCircle.show();
+		info.hide();
+		toolTip.show();
+	});
+	
+	// Hide tooltip, Show plain info icon, Hide circle icon
+	$('.product-description').on('mouseleave', function() {
+		var description = $(this);
+		var info = description.find('.fa-info');
+		var infoCircle = description.find('.fa-info-circle');
+		var toolTip = description.next();
+		
+		infoCircle.hide();
+		info.show();
+		toolTip.hide();
+	});
 })
